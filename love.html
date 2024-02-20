@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap to Add Flowers</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: pink;
+        }
+
+        #greeting {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<p id="greeting">Tap the screen to add flowers My Moshieee. sorry kung virtual lang muna🌸</p>
+<button id="resetButton">Reset</button>
+
+<script>
+    const flowerImages = [
+        'rose.jpg',
+        'rose.jpg',
+        'rose.jpg',
+        'rose.jpg',
+        'rose.jpg',
+        'rose.jpg',
+        'rose.jpg',
+        'rose.jpg',
+        'rose.jpg',
+    ];
+
+    function addFlower(event) {
+        const flowerImage = new Image();
+        flowerImage.src = flowerImages[Math.floor(Math.random() * flowerImages.length)];
+        flowerImage.style.position = 'absolute';
+        flowerImage.style.left = (event.clientX - flowerImage.width / 2) + 'px';
+        flowerImage.style.top = (event.clientY - flowerImage.height / 2) + 'px';
+        document.body.appendChild(flowerImage);
+    }
+
+    function resetFlowers() {
+        const flowers = document.querySelectorAll('img');
+        flowers.forEach(flower => flower.remove());
+    }
+
+    document.addEventListener('click', addFlower);
+
+    document.getElementById('resetButton').addEventListener('click', resetFlowers);
+
+    document.addEventListener('contextmenu', function (event) {
+        event.preventDefault();
+    });
+</script>
+
+</body>
+</html>
